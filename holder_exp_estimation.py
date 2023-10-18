@@ -21,8 +21,8 @@ def calc_eps_on_S_k(t: np.array, k: int, x: callable, norm: callable = L1) -> fl
         for deg in (1, 2, 3, 4):
             spl = splrep(S_k[i], x_S_k[i], k=deg)
 
-            dropped_approx = splev(np.delete(S_k, i), spl)
-            dropped_value = np.delete(x_S_k, i)
+            dropped_approx = splev(np.delete(S_k, i, axis=0), spl)
+            dropped_value = np.delete(x_S_k, i, axis=0)
             error_i = min(error_i, norm(dropped_approx, dropped_value))
 
         errors.append(error_i)
